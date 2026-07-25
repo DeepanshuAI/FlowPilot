@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import Section from '@/components/ui/Section';
 import InteractiveWorkflowBuilder from './InteractiveWorkflowBuilder';
 
@@ -26,4 +25,3 @@ export default function WorkflowIllustration() {
     </Section>
   );
 }
-

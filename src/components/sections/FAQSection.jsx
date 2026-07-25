@@ -1,12 +1,9 @@
 import { useState, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
-import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 import Section from '@/components/ui/Section';
 
-function FAQItem({ faq, index, totalItems, containerRef }) {
+function FAQItem({ faq, index, containerRef }) {
   const [isOpen, setIsOpen] = useState(false);
-  const reducedMotion = usePrefersReducedMotion();
   const id = `faq-${index}`;
   const panelId = `faq-panel-${index}`;
 
@@ -54,24 +51,18 @@ function FAQItem({ faq, index, totalItems, containerRef }) {
           </div>
         </button>
       </h3>
-      <AnimatePresence initial={false}>
-        {isOpen && (
-          <motion.div
-            id={panelId}
-            role="region"
-            aria-labelledby={id}
-            initial={reducedMotion ? { opacity: 1 } : { height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={reducedMotion ? { opacity: 1 } : { height: 0, opacity: 0 }}
-            transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-            className="overflow-hidden"
-          >
-            <p className="px-7 pb-6 text-base text-secondary leading-relaxed border-t border-white/10 pt-4 font-normal">
-              {faq.answer}
-            </p>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <div
+        id={panelId}
+        role="region"
+        aria-labelledby={id}
+        className={`grid transition-all duration-300 ease-out-expo ${isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}
+      >
+        <div className="overflow-hidden">
+          <p className="px-7 pb-6 text-base text-secondary leading-relaxed border-t border-white/10 pt-4 font-normal">
+            {faq.answer}
+          </p>
+        </div>
+      </div>
     </div>
   );
 }
@@ -90,7 +81,7 @@ export default function FAQSection({ faqs, headingId = 'faq-heading', title = 'F
         <div className="space-y-4" role="list">
           {faqs.map((faq, i) => (
             <div key={i} role="listitem">
-              <FAQItem faq={faq} index={i} totalItems={faqs.length} containerRef={containerRef} />
+              <FAQItem faq={faq} index={i} containerRef={containerRef} />
             </div>
           ))}
         </div>
@@ -98,5 +89,3 @@ export default function FAQSection({ faqs, headingId = 'faq-heading', title = 'F
     </Section>
   );
 }
-
-

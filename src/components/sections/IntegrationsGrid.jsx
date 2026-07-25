@@ -1,5 +1,3 @@
-import { motion } from 'framer-motion';
-import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 import Section from '@/components/ui/Section';
 import Badge from '@/components/ui/Badge';
 import { integrations } from '@/data/content';
@@ -18,8 +16,6 @@ const categoryColors = {
 };
 
 export default function IntegrationsGrid() {
-  const reducedMotion = usePrefersReducedMotion();
-
   return (
     <Section id="integrations" aria-labelledby="integrations-heading">
       <div className="text-center mb-14">
@@ -35,22 +31,17 @@ export default function IntegrationsGrid() {
         role="list"
         aria-label="Available integrations"
       >
-        {integrations.map((integration, i) => (
-          <motion.div
+        {integrations.map((integration) => (
+          <div
             key={integration.name}
             role="listitem"
-            initial={reducedMotion ? { opacity: 1 } : { opacity: 0, scale: 0.92 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true, margin: '-20px' }}
-            transition={{ delay: (i % 4) * 0.06, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            whileHover={{ y: -4, scale: 1.02 }}
-            className="glass-card-interactive p-4.5 flex items-center justify-between gap-3 cursor-default"
+            className="glass-card-interactive p-4.5 flex items-center justify-between gap-3 cursor-default transition-all duration-300 transform-gpu hover:-translate-y-1 hover:scale-[1.02]"
           >
             <span className="text-sm font-semibold text-white tracking-tight">{integration.name}</span>
             <Badge variant={categoryColors[integration.category] || 'slate'}>
               {integration.category}
             </Badge>
-          </motion.div>
+          </div>
         ))}
         {/* "100+ more" card */}
         <div className="glass-card p-4.5 flex items-center justify-center border-brand-500/30 bg-brand-500/10 col-span-2 sm:col-span-1 shadow-inner-light">
@@ -60,4 +51,3 @@ export default function IntegrationsGrid() {
     </Section>
   );
 }
-

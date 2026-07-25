@@ -1,18 +1,8 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, Play } from 'lucide-react';
-import { motion } from 'framer-motion';
-import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 import Button from '@/components/ui/Button';
 
-const container = {
-  hidden: { opacity: 0 },
-  show: { opacity: 1, transition: { staggerChildren: 0.12 } },
-};
-const item = { hidden: { opacity: 0, y: 24 }, show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } } };
-
 export default function Hero() {
-  const reducedMotion = usePrefersReducedMotion();
-
   return (
     <section
       aria-labelledby="hero-heading"
@@ -40,14 +30,9 @@ export default function Hero() {
       />
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-        <motion.div
-          variants={container}
-          initial={reducedMotion ? 'show' : 'hidden'}
-          animate="show"
-          className="flex flex-col items-center"
-        >
+        <div className="flex flex-col items-center">
           {/* Eyebrow badge */}
-          <motion.div variants={item}>
+          <div>
             <span className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-brand-500/15 border border-brand-400/30 text-brand-300 text-xs sm:text-sm font-semibold tracking-wide shadow-glow mb-8 backdrop-blur-md">
               <span className="relative flex h-2.5 w-2.5">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-400 opacity-75" aria-hidden="true" />
@@ -55,29 +40,25 @@ export default function Hero() {
               </span>
               Now with AI Agent Builder — try it free
             </span>
-          </motion.div>
+          </div>
 
-          {/* H1 */}
-          <motion.h1
+          {/* H1 — Paints immediately (0ms render delay for LCP) */}
+          <h1
             id="hero-heading"
-            variants={item}
             className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight text-white leading-[1.05] max-w-5xl"
           >
             Automate Everything.{' '}
             <span className="gradient-text">Grow Faster.</span>
-          </motion.h1>
+          </h1>
 
           {/* Subheadline */}
-          <motion.p
-            variants={item}
-            className="mt-6 text-lg sm:text-xl md:text-2xl text-secondary max-w-3xl leading-relaxed font-normal"
-          >
+          <p className="mt-6 text-lg sm:text-xl md:text-2xl text-secondary max-w-3xl leading-relaxed font-normal">
             FlowPilot AI replaces hours of manual work with intelligent automation.
             Built for agencies, marketing teams, and SaaS companies ready to scale.
-          </motion.p>
+          </p>
 
           {/* CTA buttons */}
-          <motion.div variants={item} className="mt-10 flex flex-col sm:flex-row items-center gap-4">
+          <div className="mt-10 flex flex-col sm:flex-row items-center gap-4">
             <Button as={Link} to="/contact" variant="primary" size="xl">
               Start Free Trial
               <ArrowRight size={18} aria-hidden="true" />
@@ -86,18 +67,15 @@ export default function Hero() {
               <Play size={16} aria-hidden="true" />
               Watch Demo
             </Button>
-          </motion.div>
+          </div>
 
           {/* Social proof micro-copy */}
-          <motion.p variants={item} className="mt-8 text-xs sm:text-sm text-white/50 font-medium tracking-wide">
+          <p className="mt-8 text-xs sm:text-sm text-white/50 font-medium tracking-wide">
             No credit card required &nbsp;·&nbsp; 14-day free trial &nbsp;·&nbsp; Cancel anytime
-          </motion.p>
+          </p>
 
           {/* Dashboard mockup */}
-          <motion.div
-            variants={item}
-            className="mt-16 w-full max-w-5xl mx-auto transform-gpu"
-          >
+          <div className="mt-16 w-full max-w-5xl mx-auto transform-gpu">
             <div className="relative rounded-2xl overflow-hidden border border-white/15 bg-surface-900/90 shadow-card-hover backdrop-blur-xl">
               {/* Window chrome */}
               <div className="flex items-center gap-2 px-5 h-11 bg-surface-800/90 border-b border-white/10" aria-hidden="true">
@@ -151,10 +129,9 @@ export default function Hero() {
               aria-hidden="true"
               className="absolute -bottom-12 left-1/2 -translate-x-1/2 w-4/5 h-24 bg-brand-600/30 blur-3xl rounded-full pointer-events-none"
             />
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </div>
     </section>
   );
 }
-

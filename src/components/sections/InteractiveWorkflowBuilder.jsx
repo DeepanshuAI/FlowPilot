@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Play, RotateCcw, CheckCircle2, Zap, ArrowRight, Clock, ShieldCheck, Cpu, Database, Mail, MessageSquare, Webhook } from 'lucide-react';
+import { Play, RotateCcw, CheckCircle2, Zap, Clock, ShieldCheck, Cpu, Database, Mail, MessageSquare, Webhook } from 'lucide-react';
 import Button from '@/components/ui/Button';
 import Badge from '@/components/ui/Badge';
 

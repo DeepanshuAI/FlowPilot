@@ -1,23 +1,16 @@
-import { motion } from 'framer-motion';
 import { Bot, GitBranch, BarChart2, Database, Mail, Cpu } from 'lucide-react';
-import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 import Badge from '@/components/ui/Badge';
 
 const iconMap = { Bot, GitBranch, BarChart2, Database, Mail, Cpu };
 const badgeVariants = { Core: 'brand', Popular: 'emerald', New: 'amber', '': 'slate' };
 
-export function FeatureCard({ feature, index, isFeatured = false }) {
-  const reducedMotion = usePrefersReducedMotion();
+export function FeatureCard({ feature, isFeatured = false }) {
   const Icon = iconMap[feature.icon];
 
   return (
-    <motion.article
-      initial={reducedMotion ? { opacity: 1 } : { opacity: 0, y: 32 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-30px' }}
-      transition={{ duration: 0.55, delay: (index % 3) * 0.1, ease: [0.16, 1, 0.3, 1] }}
+    <article
       className={[
-        'glass-card-interactive p-8 group flex flex-col justify-between rounded-3xl',
+        'glass-card-interactive p-8 group flex flex-col justify-between rounded-3xl transition-all duration-300 transform-gpu',
         isFeatured
           ? 'md:col-span-2 bg-gradient-to-br from-brand-950/40 via-surface-900/90 to-surface-950 border-brand-400/40 shadow-glow'
           : 'md:col-span-1',
@@ -50,8 +43,6 @@ export function FeatureCard({ feature, index, isFeatured = false }) {
           {feature.description}
         </p>
       </div>
-    </motion.article>
+    </article>
   );
 }
-
-

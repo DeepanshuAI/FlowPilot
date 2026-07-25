@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { ArrowRight, Code2, Shield, Zap, Globe } from 'lucide-react';
+import { ArrowRight, Code2, Globe } from 'lucide-react';
 import SEOHead from '@/components/layout/SEOHead';
 import Section from '@/components/ui/Section';
 import Button from '@/components/ui/Button';
@@ -10,7 +9,6 @@ import IntegrationsGrid from '@/components/sections/IntegrationsGrid';
 import SecuritySection from '@/components/sections/SecuritySection';
 import CTASection from '@/components/sections/CTASection';
 import { pageMeta, organizationSchema, softwareApplicationSchema } from '@/utils/seo';
-import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 
 const apiEndpoints = [
   { method: 'POST', path: '/v1/workflows/trigger', desc: 'Trigger a workflow programmatically' },
@@ -25,8 +23,6 @@ const methodColors = {
 };
 
 export default function ProductPage() {
-  const reducedMotion = usePrefersReducedMotion();
-
   return (
     <>
       <SEOHead
@@ -43,41 +39,30 @@ export default function ProductPage() {
         className="relative pt-32 pb-20 overflow-hidden"
       >
         <div aria-hidden="true" className="absolute inset-0 bg-hero-glow pointer-events-none" />
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={reducedMotion ? { opacity: 1 } : { opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center max-w-3xl mx-auto"
-          >
-            <Badge variant="brand" className="mb-6">Platform Overview</Badge>
-            <h1 id="product-hero-heading" className="text-4xl md:text-6xl font-extrabold text-white mb-6 leading-tight">
-              The complete AI automation platform
-            </h1>
-            <p className="text-lg text-secondary mb-10 max-w-2xl mx-auto">
-              From simple task automation to complex multi-step AI pipelines —
-              FlowPilot AI handles it all with no code required.
-            </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Button as={Link} to="/contact" variant="primary" size="lg">
-                Start Free Trial <ArrowRight size={17} aria-hidden="true" />
-              </Button>
-              <Button as={Link} to="/pricing" variant="secondary" size="lg">
-                View Pricing
-              </Button>
-            </div>
-          </motion.div>
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center max-w-3xl">
+          <Badge variant="brand" className="mb-6">Platform Overview</Badge>
+          <h1 id="product-hero-heading" className="text-4xl md:text-6xl font-extrabold text-white mb-6 leading-tight">
+            The complete AI automation platform
+          </h1>
+          <p className="text-lg text-secondary mb-10 max-w-2xl mx-auto">
+            From simple task automation to complex multi-step AI pipelines —
+            FlowPilot AI handles it all with no code required.
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Button as={Link} to="/contact" variant="primary" size="lg">
+              Start Free Trial <ArrowRight size={17} aria-hidden="true" />
+            </Button>
+            <Button as={Link} to="/pricing" variant="secondary" size="lg">
+              View Pricing
+            </Button>
+          </div>
         </div>
       </section>
 
       {/* Dashboard Preview */}
       <Section aria-labelledby="dashboard-heading">
         <h2 id="dashboard-heading" className="sr-only">Dashboard preview</h2>
-        <motion.div
-          initial={reducedMotion ? { opacity: 1 } : { opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
+        <div
           className="rounded-2xl border border-white/[0.08] overflow-hidden shadow-2xl shadow-surface-950/80"
           aria-label="FlowPilot AI product dashboard preview"
         >
@@ -134,7 +119,7 @@ export default function ProductPage() {
               </div>
             </div>
           </div>
-        </motion.div>
+        </div>
       </Section>
 
       {/* Features */}

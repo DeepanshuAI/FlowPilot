@@ -1,5 +1,4 @@
-import { useState, useId } from 'react';
-import { motion } from 'framer-motion';
+import { useState } from 'react';
 import { Mail, Phone, MapPin, Calendar, CheckCircle, AlertCircle } from 'lucide-react';
 import SEOHead from '@/components/layout/SEOHead';
 import Section from '@/components/ui/Section';
@@ -8,7 +7,6 @@ import Button from '@/components/ui/Button';
 import FAQSection from '@/components/sections/FAQSection';
 import { pageMeta, organizationSchema, buildFaqSchema } from '@/utils/seo';
 import { company, contactFaqs } from '@/data/content';
-import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 
 const INITIAL = { name: '', email: '', company: '', role: '', message: '', _hp: '' };
 
@@ -43,7 +41,6 @@ export default function ContactPage() {
   const [values, setValues] = useState(INITIAL);
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState('idle'); // idle | submitting | success | error
-  const reducedMotion = usePrefersReducedMotion();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -91,19 +88,13 @@ export default function ContactPage() {
       >
         <div aria-hidden="true" className="absolute inset-0 bg-hero-glow pointer-events-none" />
         <div className="relative mx-auto max-w-3xl px-4 sm:px-6 text-center">
-          <motion.div
-            initial={reducedMotion ? { opacity: 1 } : { opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <Badge variant="brand" className="mb-5">Get in Touch</Badge>
-            <h1 id="contact-hero-heading" className="text-4xl md:text-5xl font-extrabold text-white mb-4">
-              Let's talk automation
-            </h1>
-            <p className="text-secondary text-lg">
-              Book a demo, ask a question, or talk to sales. We typically respond within one business day.
-            </p>
-          </motion.div>
+          <Badge variant="brand" className="mb-5">Get in Touch</Badge>
+          <h1 id="contact-hero-heading" className="text-4xl md:text-5xl font-extrabold text-white mb-4">
+            Let's talk automation
+          </h1>
+          <p className="text-secondary text-lg">
+            Book a demo, ask a question, or talk to sales. We typically respond within one business day.
+          </p>
         </div>
       </section>
 
@@ -114,13 +105,10 @@ export default function ContactPage() {
           {/* Left: Form */}
           <div className="lg:col-span-3">
             {status === 'success' ? (
-              <motion.div
-                initial={reducedMotion ? { opacity: 1 } : { opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.4 }}
+              <div
                 role="status"
                 aria-live="polite"
-                className="glass-card p-10 text-center"
+                className="glass-card p-10 text-center rounded-3xl"
               >
                 <div className="w-14 h-14 rounded-full bg-emerald-500/15 border border-emerald-500/25 flex items-center justify-center mx-auto mb-5">
                   <CheckCircle size={28} className="text-emerald-400" aria-hidden="true" />
@@ -137,13 +125,13 @@ export default function ContactPage() {
                 >
                   Send another message
                 </Button>
-              </motion.div>
+              </div>
             ) : (
               <form
                 onSubmit={handleSubmit}
                 noValidate
                 aria-label="Contact form"
-                className="glass-card p-7 md:p-9 space-y-6"
+                className="glass-card p-7 md:p-9 space-y-6 rounded-3xl"
               >
                 <h2 className="text-xl font-bold text-white">Send us a message</h2>
 
@@ -259,7 +247,7 @@ export default function ContactPage() {
           {/* Right: Company details + Demo CTA */}
           <aside className="lg:col-span-2 space-y-6" aria-label="Company contact information">
             {/* Book demo card */}
-            <div className="glass-card p-6 border-brand-500/20">
+            <div className="glass-card p-6 border-brand-500/20 rounded-3xl">
               <div className="w-10 h-10 rounded-xl bg-brand-600/20 border border-brand-500/25 flex items-center justify-center mb-4">
                 <Calendar size={20} className="text-brand-400" aria-hidden="true" />
               </div>
@@ -282,7 +270,7 @@ export default function ContactPage() {
             </div>
 
             {/* Contact info */}
-            <address className="glass-card p-6 not-italic space-y-5">
+            <address className="glass-card p-6 not-italic space-y-5 rounded-3xl">
               <h3 className="text-base font-semibold text-white mb-1">Contact details</h3>
               {[
                 { Icon: Mail, label: 'Email', value: company.email, href: `mailto:${company.email}` },

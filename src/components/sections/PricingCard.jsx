@@ -1,20 +1,13 @@
 import { Link } from 'react-router-dom';
 import { Check, X, ArrowRight } from 'lucide-react';
-import { motion } from 'framer-motion';
-import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 import Button from '@/components/ui/Button';
 import Badge from '@/components/ui/Badge';
 
 export default function PricingCard({ plan, isAnnual }) {
-  const reducedMotion = usePrefersReducedMotion();
   const price = isAnnual ? plan.price.annual : plan.price.monthly;
 
   return (
-    <motion.article
-      initial={reducedMotion ? { opacity: 1 } : { opacity: 0, y: 28 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-30px' }}
-      transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+    <article
       aria-label={`${plan.name} plan`}
       className={[
         'relative flex flex-col rounded-3xl border transition-all duration-300 transform-gpu',
@@ -80,7 +73,6 @@ export default function PricingCard({ plan, isAnnual }) {
           ))}
         </ul>
       </div>
-    </motion.article>
+    </article>
   );
 }
-
