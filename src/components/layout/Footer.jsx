@@ -116,10 +116,17 @@ export default function Footer() {
 
         <div className="mt-16 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-xs text-secondary font-medium">
-            &copy; {year} FlowPilot AI, Inc. All rights reserved.
+            &copy; 2026 FlowPilot AI
           </p>
-          <p className="text-xs text-white/40 font-medium">
-            Built with precision. Automated with purpose.
+          <p className="text-xs text-secondary font-medium">
+            <a
+              href="https://digitalheroesco.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-brand-300 transition-colors underline underline-offset-4 decoration-brand-400/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 rounded"
+            >
+              Built for Digital Heroes Training Task
+            </a>
           </p>
         </div>
       </div>
